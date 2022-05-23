@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--Fonte Abaixo-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Verificador de Idade</title>
+
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Verificador de Idade</h1>
+    </header>
+
+    <section>
+      <div>
+        <p>
+          Ano de Nascimento:
+          <input type="number" name="txtano" id="txtano" min="0" />
+        </p>
+
+        <p>
+          Sexo:
+          <input type="radio" name="sex" id="masc" checked />
+          <label for="masc">Masculino</label>
+          <input type="radio" name="sex" id="fem" />
+          <label for="fem">Feminino</label>
+        </p>
+
+        <p>
+          <input type="button" value="Verificar" onclick="calcular()" />
+        </p>
+      </div>
+
+      <div id="res">Preencha os dados acima e veja o resultado!</div>
+    </section>
+
+    <footer>
+      <p>&copy; CursoEmVídeo</p>
+    </footer>
+
+    <script>
+      function calcular() {
+        var data = new Date() // data atual
+        var ano = data.getFullYear() // ano atual
+        var fano = document.getElementById('txtano') // formulário de ano
+        var res = document.querySelector('div#res')
+
+        if (fano.value.length == 0 || Number(fano.value) > ano) {
+          window.alert('[ERRO] Verifique os dados e tente novamente!')
+        } else {
+          var fsex = document.getElementsByName('sex') // formulário de sex
+          var idade = ano - Number(fano.value) // ano atual - ano de nasc. do cliente
+          var gênero = ''
+          var img = document.createElement('img')
+          img.setAttribute('id', 'foto')
+
+          if (fsex[0].checked) {
+            if (idade >= 0 && idade <= 10) {
+              gênero = 'Criança'
+              img.setAttribute('src', 'foto_baby_m.png')
+              document.body.style.background = '#91c981'
+            } else if (idade < 15) {
+              gênero = 'Pré-adolescente'
+              img.setAttribute('src', 'foto_pre_adolesc_m.png')
+              document.body.style.background = '#e9c565'
+            } else if (idade <= 24) {
+              gênero = 'Jovem'
+              img.setAttribute('src', 'foto_jovem_m.png')
+              document.body.style.background = '#c99d6f'
+            } else if (idade <= 60) {
+              gênero = 'Homem'
+              img.setAttribute('src', 'foto_adulto_m.png')
+              document.body.style.background = '#2f4038'
+            } else {
+              gênero = 'Idoso'
+              img.setAttribute('src', 'foto_idoso_m.png')
+              document.body.style.background = '#b6b9c1'
+            }
+          } else if (fsex[1].checked) {
+            if (idade >= 0 && idade <= 10) {
+              gênero = 'Criança'
+              img.setAttribute('src', 'foto_baby_f.png')
+              document.body.style.background = '#e3c2b5'
+            } else if (idade < 15) {
+              gênero = 'Pré-adolescente'
+              img.setAttribute('src', 'foto_pre_adolesc_f.png')
+              document.body.style.background = '#d4c3b1'
+            } else if (idade <= 24) {
+              gênero = 'Jovem'
+              img.setAttribute('src', 'foto_jovem_f.png')
+              document.body.style.background = '#accbd1'
+            } else if (idade <= 60) {
+              gênero = 'Mulher'
+              img.setAttribute('src', 'foto_adulto_f.png')
+              document.body.style.background = '#eea684'
+            } else {
+              gênero = 'Idosa'
+              img.setAttribute('src', 'foto_idoso_f.png')
+              document.body.style.background = '#523132'
+            }
+          }
+
+          res.innerHTML = `<p>${gênero} de ${idade} anos.</p>`
+          res.style.textAlign = 'center'
+          res.appendChild(img)
+        }
+      }
+    </script>
+  </body>
+</html>
