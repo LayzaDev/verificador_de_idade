@@ -30,7 +30,7 @@ O programa é reponsável por verificar e informar a idade e a faixa etária do 
 
 ## Resultado Final:
 
-Link do site: https://github.com/LayzaDev/verificador_de_idade.git
+Link do site: https://layzadev.github.io/verificador_de_idade/
 
 ## Créditos
 
